@@ -1,0 +1,32 @@
+body {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	margin: 40px auto;
+	max-width: 750px;
+	line-height:1.6;
+	font-size:18px;
+	color: #444;
+	padding: 0 10px
+}
+
+a {
+	color: #444;
+}
+
+h1, h2 {
+	line-height: 1.2;
+}
+
+.deadness {
+	min-height: 400px;
+}
+
+.deadness h2 {
+	display: inline;
+}
+
+.small-text {
+	font-size: small;
+	font-style: italic;
+	margin-bottom: 10px;
+	margin-top: 6px;
+}
