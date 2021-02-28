@@ -27,7 +27,8 @@ jobs:
       - name: Rsync Deployments Action
         uses: Burnett01/rsync-deployments@4.1
         with:
-          switches: -avzr --delete --exclude="{'.git','.github'}"
+          switches: -avzr --delete
+          path: "./src/*"
           remote_path: /var/www/nick.geek.nz/html/how-dead-inside
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_port: ${{ secrets.DEPLOY_PORT }}
