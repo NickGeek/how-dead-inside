@@ -28,8 +28,7 @@ jobs:
         uses: Burnett01/rsync-deployments@4.1
         with:
           switches: -avzr --delete
-          path: src/
-          remote_path: /var/www/html/
+          remote_path: /var/www/nick.geek.nz/html/how-dead-inside
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_port: ${{ secrets.DEPLOY_PORT }}
           remote_user: ${{ secrets.DEPLOY_USER }}
