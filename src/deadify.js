@@ -1,7 +1,7 @@
 (() => {
 	function getWeek() {
 		// The uni week without factoring out holidays/breaks
-		let weekNum = getWeekOfYear(new Date()) - 28;
+		let weekNum = getWeekOfYear(new Date()) - 7;
 
 		// Mid-term break
 		if (weekNum > 5 && weekNum < 8) {
