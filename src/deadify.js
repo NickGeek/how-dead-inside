@@ -4,9 +4,9 @@
 		let weekNum = getWeekOfYear(new Date()) - 7;
 
 		// Mid-term break
-		if (weekNum > 5 && weekNum < 8) {
-			weekNum = 5;
-		} else if (weekNum >= 8) {
+		if (weekNum > 6 && weekNum < 9) {
+			weekNum = 6;
+		} else if (weekNum >= 9) {
 			weekNum -= 2;
 		}
 
