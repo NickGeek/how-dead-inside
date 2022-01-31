@@ -1,11 +1,13 @@
 (() => {
 	function getWeek() {
 		// The uni week without factoring out holidays/breaks
-		let weekNum = getWeekOfYear(new Date()) - 26;
+		// see https://www.epochconverter.com/weeks/2022 (or current year) to help you here
+		// dates from https://www.wgtn.ac.nz/students/study/dates
+		let weekNum = getWeekOfYear(new Date()) - 8;
 
 		// Mid-term break
-		if (weekNum > 6 && weekNum < 9) {
-			weekNum = 6;
+		if (weekNum >= 7 && weekNum < 9) {
+			weekNum = 7;
 		} else if (weekNum >= 9) {
 			weekNum -= 2;
 		}
@@ -23,7 +25,7 @@
 
 	function getDeadnessFeeling(week) {
 		// This is put *directly* onto the DOM so no user input here please
-
+		if (week < 1) return `getting set to get rekt!`
 		if (week <= 3) return `feeling great. Put yourself together and stop being so cynical.`
 		if (week <= 6) return `hating your courses a bit, but still getting things done.`
 		return `embracing dark magic!<br /><img src="https://i.imgur.com/PtmRbyL.gif" />`
