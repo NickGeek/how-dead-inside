@@ -53,10 +53,10 @@ jobs:
         uses: steebchen/kubectl@v2.1.1
         with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: kubectl rollout restart deployment how-dead-inside
+          command: rollout restart deployment how-dead-inside
 
       - name: Wait for rollout
         uses: steebchen/kubectl@v2.1.1
         with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: kubectl rollout status deployment/how-dead-inside
+          command: rollout status deployment/how-dead-inside
