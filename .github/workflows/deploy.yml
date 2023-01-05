@@ -18,6 +18,13 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    env:
+      OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+      OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+      OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+      OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+      OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -49,14 +56,13 @@ jobs:
           --tag $IMAGE_ID:$VERSION \
           --platform linux/amd64,linux/arm64/v8 .
 
-      - name: Update k8s deployment
-        uses: steebchen/kubectl@v2.1.1
+      - name: Configure Kubectl for Oracle Container Engine for Kubernetes (OKE)
+        uses: oracle-actions/configure-kubectl-oke@v1.3.1
         with:
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: rollout restart deployment how-dead-inside
+          cluster: ${{ secrets.OKE_CLUSTER_OCID }}
 
-      - name: Wait for rollout
-        uses: steebchen/kubectl@v2.1.1
-        with:
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: rollout status deployment/how-dead-inside
+      - name: Deploy to k8s
+        run: kubectl rollout restart deployment how-dead-inside
+
+      - name: Wait for deployment to roll out
+        run: kubectl rollout status deployment/how-dead-inside
