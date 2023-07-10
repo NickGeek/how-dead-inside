@@ -1,10 +1,9 @@
 (() => {
 	function getWeek() {
 		// The uni week without factoring out holidays/breaks
-		// see https://www.epochconverter.com/weeks/2023 (or current year) to help you here
+		// see https://www.epochconverter.com/weeks/2022 (or current year) to help you here
 		// dates from https://www.wgtn.ac.nz/students/study/dates
-
-		let weekNum = getWeekOfYear(new Date()) - 8;
+		let weekNum = getWeekOfYear(new Date()) - 27;
 
 		// Mid-term break
 		if (weekNum >= 7 && weekNum < 9) {
@@ -51,8 +50,7 @@
 		const weekNumEl = document.querySelector('.deadness__week-number');
 		const deadnessFeelingEl = document.querySelector('.deadness__feeling');
 
-		// deal with offset 0 for o-week
-		if ((!weekNum || !deadnessFeeling) && weekNum!==0) {
+		if (!weekNum || !deadnessFeeling) {
 			throw `You didn't give me the state I asked for.`
 		}
 
