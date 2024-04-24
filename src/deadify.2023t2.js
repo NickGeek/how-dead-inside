@@ -3,16 +3,17 @@
 		// The uni week without factoring out holidays/breaks
 		// see https://www.epochconverter.com/weeks/2022 (or current year) to help you here
 		// dates from https://www.wgtn.ac.nz/students/study/dates
-		let weekNum = getWeekOfYear(new Date()) - 27;
+		let weekNum = getWeekOfYear(new Date());
+		const startWeek = 9;
 
 		// Mid-term break
-		if (weekNum >= 7 && weekNum < 9) {
-			weekNum = 6;
-		} else if (weekNum >= 9) {
+		if (weekNum >= 14 && weekNum < 16) {
+			return 13 - (startWeek - 1);
+		} else if (weekNum >= 16) {
 			weekNum -= 2;
 		}
 
-		return weekNum;
+		return weekNum - (startWeek - 1);
 
 		function getWeekOfYear(date) {
 			const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
