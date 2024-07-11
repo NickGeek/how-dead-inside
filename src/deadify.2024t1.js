@@ -4,16 +4,16 @@
 		// see https://www.epochconverter.com/weeks/2022 (or current year) to help you here
 		// dates from https://www.wgtn.ac.nz/students/study/dates
 		let weekNum = getWeekOfYear(new Date());
-		const startWeek = 9;
+		const startWeek = 1;
 
 		// Mid-term break
-		if (weekNum >= 14 && weekNum < 16) {
+		if (weekNum >= 7 && weekNum < 9) {
 			return 13 - (startWeek - 1);
-		} else if (weekNum >= 16) {
+		} else if (weekNum >= 9) {
 			weekNum -= 2;
 		}
 
-		return weekNum - (startWeek - 1);
+		return weekNum;
 
 		function getWeekOfYear(date) {
 			const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -26,9 +26,11 @@
 
 	function getDeadnessFeeling(week) {
 		// This is put *directly* onto the DOM so no user input here please
+		// Do the minute of work yourself then!
 		if (week < 1) return `getting set to get rekt!`
 		if (week <= 3) return `feeling great. Put yourself together and stop being so cynical.`
 		if (week <= 6) return `hating your courses a bit, but still getting things done.`
+		if (week <= 9) return `realising the end of trimester is approaching rapidly, start running.`
 		return `embracing dark magic!<br /><img src="https://i.imgur.com/PtmRbyL.gif" />`
 	}
 
