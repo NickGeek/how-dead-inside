@@ -1,19 +1,22 @@
 (() => {
 	function getWeek() {
 		// The uni week without factoring out holidays/breaks
-		// see https://www.epochconverter.com/weeks/2022 (or current year) to help you here
+		// see https://www.epochconverter.com/weeks/2025 (or current year) to help you here
 		// dates from https://www.wgtn.ac.nz/students/study/dates
 		let weekNum = getWeekOfYear(new Date());
-		const startWeek = 9;
+		// The exact week the trimester started, not the one before.
+		const startWeek = 28;
+		const breakFirstWeek = 34;
 
 		// Mid-term break
-		if (weekNum >= 14 && weekNum < 16) {
-			return 13 - (startWeek - 1);
-		} else if (weekNum >= 16) {
+		if (weekNum == breakFirstWeek || weekNum == breakFirstWeek + 1) {
+			// let's just return the last week of first half
+			return breakFirstWeek - startWeek;
+		} else if (weekNum > breakFirstWeek + 1) {
 			weekNum -= 2;
 		}
 
-		return weekNum - (startWeek - 1);
+		return weekNum - startWeek + 1;
 
 		function getWeekOfYear(date) {
 			const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -27,8 +30,8 @@
 	function getDeadnessFeeling(week) {
 		// This is put *directly* onto the DOM so no user input here please
 		if (week < 1) return `getting set to get rekt!`
-		if (week <= 3) return `feeling great. Put yourself together and stop being so cynical.`
-		if (week <= 6) return `hating your courses a bit, but still getting things done.`
+		if (week <= 3) return `gathering strength, courage, and caffeine for what's about to come.`
+		if (week <= 6) return `trying to try your best o7.`
 		return `embracing dark magic!<br /><img src="https://i.imgur.com/PtmRbyL.gif" />`
 	}
 
